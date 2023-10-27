@@ -1,14 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speech-to-Text</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282424; /* Dark background */
+            background-image: url('path/to/spooky-background-image.jpg'); /* Optional: Add a spooky background image if you have one */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #f8f8f8; /* Light text color for contrast */
+        }
+
+        #startBtn {
+            background: linear-gradient(135deg, #FF7F50, #FF4500); /* Shades of orange */
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+        }
+
+        #startBtn:hover {
+            background: linear-gradient(135deg, #FF4500, #FF7F50);
+            transform: scale(1.05);
+        }
+
+        #transcript {
+            padding: 15px;
+            border-radius: 10px;
+            width: 80vw;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            border: 1px solid #FF7F50; /* Orange border */
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            color: #FF7F50; /* Orange text */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #FF7F50; /* Orange color for headers */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #8B00FF; /* Purple color for subtext */
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+        }
+
+
+
+    </style>
 </head>
+
 <body>
 
-<button id="startBtn">Start Recording</button>
+<h1>Welcome, Seeker of Shadows and Wisdom, I am Plato.</h1>
+<p>While mortals wear costumes, I wear thoughts. Dare to explore the crypts of knowledge with me this All Hallows' Eve?</p>
+<button id="startBtn">Ask a question</button>
 <div id="transcript"></div>
+<div id="response" style="margin-top: 20px;"></div>
 
 <script>
     // Check if the browser supports the Web Speech API
@@ -71,6 +140,7 @@
     .then(data => {
         const outputText = data.text;
         console.log(outputText);
+        document.getElementById('response').innerText = outputText;
 
         // Convert text to speech and play it for the user
         speakText(outputText);
