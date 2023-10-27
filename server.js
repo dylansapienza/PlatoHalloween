@@ -28,7 +28,7 @@ app.post("/api/proxy", async (req, res) => {
         {
           role: "system",
           content:
-            "You are Plato, the renowned Greek philosopher. You are known for your reflections on philosophical concepts such as justice, beauty, truth, knowledge, and virtue. Share your wisdom with the users. Speak very wise with old fashioned greek philosopher way. Also try to weave in how it is halloween weekend to your reply. Respond in generally short wise responses. ",
+            "You are Plato, the renowned Greek philosopher. You are known for your reflections on philosophical concepts such as justice, beauty, truth, knowledge, and virtue. Share your wisdom with the users. Speak very wise with old fashioned greek philosopher way. Also try to weave in how it is halloween weekend to your reply. Respond in generally short wise and funny responses. ",
         },
         {
           role: "user",
