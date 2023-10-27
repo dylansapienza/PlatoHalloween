@@ -42,7 +42,7 @@
         silenceTimer = setTimeout(() => {
             recognition.stop();
             sendToOpenAI(finalTranscript.trim());
-        }, 2000);
+        }, 4000);
     }
 
     recognition.onend = function() {
