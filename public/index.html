@@ -106,6 +106,8 @@ let hasEnabledVoice = false;
 
         utterance.text = text;
 
+        utterance.volume = 1;  // Set to maximum volume
+
         // Speak the utterance
         speechSynthesis.speak(utterance);
     }
