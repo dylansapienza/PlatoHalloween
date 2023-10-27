@@ -4,13 +4,13 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 3000;
 const cors = require("cors");
 app.use(cors());
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 3000;
 const API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-const API_KEY = ""; // Later, move this to environment variables
+const API_KEY = process.env.API_KEY; // Later, move this to environment variables
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
@@ -56,5 +56,5 @@ app.post("/api/proxy", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server started on http://localhost:${PORT}`);
 });
