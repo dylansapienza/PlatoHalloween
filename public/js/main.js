@@ -29,9 +29,11 @@ recognition.onresult = function (event) {
 recognition.onend = function () {
   isListening = false; // Update the state when recognition ends
   document.getElementById("listeningBar").style.display = "none";
+  microphoneIcon.className = "fas fa-microphone"; // Set icon back to microphone
 };
 
 const startBtn = document.getElementById("startBtn");
+const microphoneIcon = startBtn.querySelector(".fas");
 const transcriptDiv = document.getElementById("transcript");
 
 startBtn.addEventListener("click", () => {
@@ -50,10 +52,12 @@ startBtn.addEventListener("click", () => {
         sendToOpenAI(finalTranscript.trim());
       }
     }
+    microphoneIcon.className = "fas fa-microphone"; // Change to microphone icon
   } else {
     finalTranscript = "";
     recognition.start();
     document.getElementById("listeningBar").style.display = "block";
+    microphoneIcon.className = "fas fa-stop"; // Change to stop icon
   }
 });
 
