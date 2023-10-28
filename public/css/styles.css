@@ -31,7 +31,7 @@ body {
     transform: scale(1.05);
 }
 
-#transcript {
+.textArea {
     padding: 15px;
     border-radius: 10px;
     width: 80vw;
@@ -40,6 +40,7 @@ body {
     border: 1px solid #FF7F50; /* Orange border */
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
     color: #FF7F50; /* Orange text */
+    margin-top: 5px;
 }
 
 h1 {
@@ -58,14 +59,16 @@ p {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
 }
 
-#response {
-    padding: 15px;
-    border-radius: 10px;
-    width: 80vw;
-    max-width: 500px;
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
-    border: 1px solid #FF7F50; /* Orange border */
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-    color: #FF7F50; /* Orange text */
-    margin-top: 20px; /* You already have this property */
+#text {
+    font-size: 1.2em;
+    color: #FF7F50; /* Orange color for subtext */
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+    /* Position the text so it is on the left on the textArea  */
+    
+}
+
+i {
+    margin-right: 4px;
 }

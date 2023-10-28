@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speech-to-Text</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
 
 <h1>Welcome, Seeker of Shadows and Wisdom, I am Plato.</h1>
 <p>While mortals wear costumes, I wear thoughts. Dare to explore the crypts of knowledge with me this All Hallows' Eve?</p>
-<button id="startBtn">Ask a question</button>
-<div id="transcript"></div>
-<div id="response" style="margin-top: 20px;"></div>
+<button id="startBtn">
+    <i class="fas fa-microphone"></i>
+    Ask a question
+</button>
+<div id="text">Question</div>
+<div class="textArea" id="transcript"></div>
+<div id="text">Response</div>
+<div class="textArea" id="response"></div>
 
 <script src="js/main.js"></script>
 
