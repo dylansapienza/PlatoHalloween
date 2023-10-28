@@ -8,19 +8,33 @@ recognition.continuous = true;
 recognition.interimResults = true;
 
 let finalTranscript = "";
+let interimTranscript = "";
 let isListening = false;
 
 recognition.onresult = function (event) {
-  let interimTranscript = "";
+  let newInterimTranscript = "";
+  let newFinalTranscript = "";
 
   for (let i = event.resultIndex; i < event.results.length; i++) {
     const transcript = event.results[i][0].transcript;
     if (event.results[i].isFinal) {
-      finalTranscript += transcript;
+      newFinalTranscript += transcript;
     } else {
-      interimTranscript += transcript;
+      newInterimTranscript += transcript;
     }
   }
+
+  if (newFinalTranscript) {
+    finalTranscript += newFinalTranscript;
+    interimTranscript = ""; // Reset interim transcript if we have new final results
+  } else {
+    interimTranscript = newInterimTranscript;
+  }
+
+  // Update the transcript div
+  // remove any duplicate text between final and interim
+
+  transcriptDiv.innerHTML = "";
 
   transcriptDiv.innerHTML =
     finalTranscript + "<i>" + interimTranscript + "</i>";
@@ -42,6 +56,15 @@ startBtn.addEventListener("click", () => {
     // If it's currently listening
     recognition.stop();
     document.getElementById("listeningBar").style.display = "none";
+
+    if (finalTranscript.endsWith(interimTranscript)) {
+      // If the final transcript already contains the interim one, don't add again
+      interimTranscript = "";
+    } else {
+      finalTranscript += interimTranscript;
+      interimTranscript = ""; // Clear the interim transcript
+    }
+
     console.log(finalTranscript.trim());
     if (finalTranscript.trim() !== "") {
       console.log("Sending to OpenAI");
