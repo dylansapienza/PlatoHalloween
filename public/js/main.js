@@ -31,7 +31,6 @@ recognition.onresult = function (event) {
   silenceTimer = setTimeout(() => {
     recognition.stop();
     document.getElementById("listeningBar").style.display = "none";
-    sendToOpenAI(finalTranscript.trim());
   }, 4000);
 };
 
