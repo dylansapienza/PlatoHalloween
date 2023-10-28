@@ -8,7 +8,6 @@ recognition.continuous = true;
 recognition.interimResults = true;
 
 let finalTranscript = "";
-let silenceTimer;
 let isListening = false;
 
 recognition.onresult = function (event) {
@@ -25,40 +24,32 @@ recognition.onresult = function (event) {
 
   transcriptDiv.innerHTML =
     finalTranscript + "<i>" + interimTranscript + "</i>";
-
-  // Reset silence timer upon receiving any speech result
-  clearTimeout(silenceTimer);
-  silenceTimer = setTimeout(() => {
-    recognition.stop();
-    document.getElementById("listeningBar").style.display = "none";
-  }, 4000);
 };
 
 recognition.onend = function () {
   isListening = false; // Update the state when recognition ends
   document.getElementById("listeningBar").style.display = "none";
-
-  if (finalTranscript.trim() !== "") {
-    document.getElementById("loadingSpinner").style.display = "block";
-    sendToOpenAI(finalTranscript.trim());
-  }
-
-  clearTimeout(silenceTimer);
 };
 
 const startBtn = document.getElementById("startBtn");
 const transcriptDiv = document.getElementById("transcript");
 
 startBtn.addEventListener("click", () => {
+  console.log(isListening);
   if (isListening) {
     // If it's currently listening
     recognition.stop();
     document.getElementById("listeningBar").style.display = "none";
+    console.log(finalTranscript.trim());
     if (finalTranscript.trim() !== "") {
-      document.getElementById("loadingSpinner").style.display = "block";
-      sendToOpenAI(finalTranscript.trim());
+      console.log("Sending to OpenAI");
+      try {
+        document.getElementById("loadingSpinner").style.display = "block";
+        sendToOpenAI(finalTranscript.trim());
+      } catch (error) {
+        sendToOpenAI(finalTranscript.trim());
+      }
     }
-    clearTimeout(silenceTimer);
   } else {
     finalTranscript = "";
     recognition.start();
@@ -72,7 +63,7 @@ recognition.onstart = function () {
 
 function sendToOpenAI(text) {
   const PROXY_ENDPOINT = "/api/proxy"; // Assuming your frontend is on the same domain as the backend
-
+  console.log("Sending to OpenAI: " + text);
   fetch(PROXY_ENDPOINT, {
     method: "POST",
     headers: {
