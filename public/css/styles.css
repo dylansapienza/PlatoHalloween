@@ -6,11 +6,11 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #282424; /* Dark background */
-    background-image: url('path/to/spooky-background-image.jpg'); /* Optional: Add a spooky background image if you have one */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: #f8f8f8; /* Light text color for contrast */
+    margin-bottom: 10px;
 }
 
 #topImage {
@@ -89,4 +89,48 @@ p {
 
 i {
     margin-right: 4px;
+}
+
+.spinner {
+    display: none; /* Initially hidden */
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #FF7F50; /* Orange color to match your theme */
+    border-radius: 50%; /* Rounded spinner for circular look */
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#listeningBar {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    top: 0; /* Stick to the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset the left positioning to ensure true centering */
+    width: 80%; /* Width of the bar */
+    border-radius: 16px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 10px rgba(255, 127, 80, 0.6); /* Slightly transparent orange shadow */
+    height: 50px; /* Height of the bar */
+    background-color: #FF7F50; /* Orange color to match your theme */
+    z-index: 9999; /* Very high z-index to ensure it's above other content */
+    text-align: center; /* Aligns the text to the center */
+    line-height: 50px; /* Vertically centers the text */
+}
+
+#listeningBar span { /* Hypothetical text element */
+    font-size: 1.4em;
+    color: #f8f8f8; /* Light text color from your body style */
+    font-weight: bold; /* Makes the text bold */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+}
+
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

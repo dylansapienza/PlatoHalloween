@@ -9,6 +9,7 @@ recognition.interimResults = true;
 
 let finalTranscript = "";
 let silenceTimer;
+let isListening = false;
 
 recognition.onresult = function (event) {
   let interimTranscript = "";
@@ -29,11 +30,20 @@ recognition.onresult = function (event) {
   clearTimeout(silenceTimer);
   silenceTimer = setTimeout(() => {
     recognition.stop();
+    document.getElementById("listeningBar").style.display = "none";
     sendToOpenAI(finalTranscript.trim());
   }, 4000);
 };
 
 recognition.onend = function () {
+  isListening = false; // Update the state when recognition ends
+  document.getElementById("listeningBar").style.display = "none";
+
+  if (finalTranscript.trim() !== "") {
+    document.getElementById("loadingSpinner").style.display = "block";
+    sendToOpenAI(finalTranscript.trim());
+  }
+
   clearTimeout(silenceTimer);
 };
 
@@ -41,9 +51,25 @@ const startBtn = document.getElementById("startBtn");
 const transcriptDiv = document.getElementById("transcript");
 
 startBtn.addEventListener("click", () => {
-  finalTranscript = "";
-  recognition.start();
+  if (isListening) {
+    // If it's currently listening
+    recognition.stop();
+    document.getElementById("listeningBar").style.display = "none";
+    if (finalTranscript.trim() !== "") {
+      document.getElementById("loadingSpinner").style.display = "block";
+      sendToOpenAI(finalTranscript.trim());
+    }
+    clearTimeout(silenceTimer);
+  } else {
+    finalTranscript = "";
+    recognition.start();
+    document.getElementById("listeningBar").style.display = "block";
+  }
 });
+
+recognition.onstart = function () {
+  isListening = true; // Update the state when recognition starts
+};
 
 function sendToOpenAI(text) {
   const PROXY_ENDPOINT = "/api/proxy"; // Assuming your frontend is on the same domain as the backend
@@ -63,6 +89,9 @@ function sendToOpenAI(text) {
 
       // Convert text to speech and play it for the user
       speakText(outputText);
+
+      // Hide the spinner
+      document.getElementById("loadingSpinner").style.display = "none";
     })
     .catch((error) => {
       console.error("Error:", error);
