@@ -2,7 +2,7 @@
 
 Plato's Halloween Oracle is an interactive voice application that leverages the power of Large Language Models to generate philosophical responses in the style of Plato. Perfect for Halloween parties, engage in deep conversations with the ancient philosopher with a spooky twist.
 
-<img src="/PlatoHalloween.webp" width="30%" height="30%">
+<img src="public/images/PlatoHalloween.webp" width="30%" height="30%">
 
 ## Features 🌟
 
