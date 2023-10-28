@@ -1,0 +1,59 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282424; /* Dark background */
+    background-image: url('path/to/spooky-background-image.jpg'); /* Optional: Add a spooky background image if you have one */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f8f8f8; /* Light text color for contrast */
+}
+
+#startBtn {
+    background: linear-gradient(135deg, #FF7F50, #FF4500); /* Shades of orange */
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 30px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+}
+
+#startBtn:hover {
+    background: linear-gradient(135deg, #FF4500, #FF7F50);
+    transform: scale(1.05);
+}
+
+#transcript {
+    padding: 15px;
+    border-radius: 10px;
+    width: 80vw;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border: 1px solid #FF7F50; /* Orange border */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    color: #FF7F50; /* Orange text */
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #FF7F50; /* Orange color for headers */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #FF7F50; /* Purple color for subtext */
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+}

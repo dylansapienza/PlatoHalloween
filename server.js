@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const axios = require("axios");
@@ -10,7 +12,9 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 const API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-const API_KEY = process.env.API_KEY; // Later, move this to environment variables
+// if local use api key from .env file
+// else use heroku config var
+const API_KEY = process.env.API_KEY;
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
