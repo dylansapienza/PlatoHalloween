@@ -53,11 +53,13 @@ startBtn.addEventListener("click", () => {
       }
     }
     microphoneIcon.className = "fas fa-microphone"; // Change to microphone icon
+    startBtn.querySelector("span").textContent = "Ask a question";
   } else {
     finalTranscript = "";
     recognition.start();
     document.getElementById("listeningBar").style.display = "block";
     microphoneIcon.className = "fas fa-stop"; // Change to stop icon
+    startBtn.querySelector("span").textContent = "Stop listening";
   }
 });
 
